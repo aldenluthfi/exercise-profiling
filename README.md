@@ -33,6 +33,10 @@ Java has a lot of builtin functions to iterate through a list, and sometimes it 
 
 
 ## JMeter Report and Test Results
+### JMeter from CMD
+<img src="images/cmd 1.png" alt="all-student"/>
+<img src="images/cmd 2.png" alt="all-student"/>
+<img src="images/cmd 3.png" alt="all-student"/>
 ### **Endpoint** `/all-student`
 Before Optimization:
 <img src="images/getAllStudentWithCourses() 1.png" alt="all-student">
