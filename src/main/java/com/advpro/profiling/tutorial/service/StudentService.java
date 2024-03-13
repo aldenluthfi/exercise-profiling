@@ -5,6 +5,7 @@ import com.advpro.profiling.tutorial.model.StudentCourse;
 import com.advpro.profiling.tutorial.repository.StudentCourseRepository;
 import com.advpro.profiling.tutorial.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,15 +29,11 @@ public class StudentService {
     }
 
     public Optional<Student> findStudentWithHighestGpa() {
-        List<Student> students = studentRepository.findAll();
-        Student highestGpaStudent = null;
-        double highestGpa = 0.0;
-        for (Student student : students) {
-            if (student.getGpa() > highestGpa) {
-                highestGpa = student.getGpa();
-                highestGpaStudent = student;
-            }
-        }
+        List<Sort.Order> sortBy = new ArrayList<>();
+        sortBy.add(new Sort.Order(Sort.Direction.DESC, "gpa"));
+        sortBy.add(new Sort.Order(Sort.Direction.ASC, "name"));
+        List<Student> students = studentRepository.findAll(Sort.by(sortBy));
+        Student highestGpaStudent = students.get(0);
         return Optional.ofNullable(highestGpaStudent);
     }
 
